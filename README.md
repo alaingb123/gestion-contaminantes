@@ -10,7 +10,6 @@ Este sistema está diseñado para gestionar y monitorear las fuentes contaminant
 - Monitoreo de ruidos
 - Gestión de residuos líquidos
 - Control de residuos peligrosos
-- Sistema de inventario de componentes
 - Interfaz administrativa personalizada
 
 ## Requisitos del Sistema
@@ -86,8 +85,6 @@ python manage.py runserver
 ## Soporte
 Para reportar problemas o solicitar ayuda, por favor crear un issue en el repositorio del proyecto.
 
-## Licencia
-[Especificar tipo de licencia]
 
 ## Contribuidores
-[Lista de contribuidores principales] 
+alaingalvez76@gmail.com 
