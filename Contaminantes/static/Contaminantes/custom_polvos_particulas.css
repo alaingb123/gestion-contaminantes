@@ -1,0 +1,13 @@
+.text {
+    white-space: normal;
+    word-wrap: break-word; /* Para que las palabras largas también se dividan si es necesario */
+}
+
+.field-descripcion {
+    white-space: nowrap;
+}
+
+.field-municipio_nombre {
+    white-space: nowrap;
+}
+

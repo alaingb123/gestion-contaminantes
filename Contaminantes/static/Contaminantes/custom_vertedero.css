@@ -1,0 +1,21 @@
+.text {
+    white-space: normal;
+    word-wrap: break-word; /* Para que las palabras largas también se dividan si es necesario */
+}
+
+.field-nombre {
+    white-space: nowrap;
+}
+
+
+.field-cuenca {
+    white-space: nowrap;
+}
+
+.field-municipio {
+    white-space: nowrap;
+}
+
+.field-tiempo_vida_util_con_unidad {
+    white-space: nowrap;
+}

@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+db.sqlite3
+db.sqlite31
+db.sqlite312
+db.sqlite3123
+db.sqlite31231
+db.sqlite3Prueba
+venv/
+.env
+staticfiles/
+media/

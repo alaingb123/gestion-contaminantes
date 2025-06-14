@@ -1,0 +1,12 @@
+.text {
+    white-space: normal;
+    word-wrap: break-word; /* Para que las palabras largas también se dividan si es necesario */
+}
+
+.field-total_fc {
+    white-space: nowrap;
+}
+
+.field-total_norma {
+    white-space: nowrap;
+}

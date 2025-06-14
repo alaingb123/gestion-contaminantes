@@ -1,0 +1,49 @@
+{% extends "admin/change_list.html" %}
+
+{% block extrahead %}
+  {{ block.super }}
+  <style>
+
+    #changelist-filter details {
+      margin-bottom: 10px; /* Espaciado entre detalles */
+    }
+
+    #changelist-filter summary {
+      cursor: pointer; /* Cambiar cursor al pasar sobre el resumen */
+      font-weight: bold; /* Texto en negrita */
+    }
+
+    #toggle-filters {
+      margin-bottom: 10px; /* Espaciado inferior */
+      padding: 5px 10px; /* Espaciado interno */
+      background-color: #417690; /* Color de fondo del botón */
+      color: white; /* Color del texto */
+      border: none; /* Sin borde */
+      border-radius: 4px; /* Bordes redondeados */
+      cursor: pointer; /* Cambiar cursor al pasar sobre el botón */
+    }
+
+    #toggle-filters:hover {
+      background-color: #0056b3; /* Color de fondo al pasar el mouse */
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+  <button id="toggle-filters">Ocultar Filtros</button>
+
+  <script>
+    document.getElementById('toggle-filters').addEventListener('click', function() {
+      var filterNav = document.getElementById('changelist-filter');
+      if (filterNav.style.display === 'block') {
+        filterNav.style.display = 'none'; // Ocultar filtros
+        this.textContent = 'Mostrar Filtros'; // Cambiar texto del botón
+      } else {
+        filterNav.style.display = 'block'; // Mostrar filtros
+        this.textContent = 'Ocultar Filtros'; // Cambiar texto del botón
+      }
+    });
+  </script>
+
+  {{ block.super }}  {# Esto renderiza el resto del contenido de la lista #}
+{% endblock %}

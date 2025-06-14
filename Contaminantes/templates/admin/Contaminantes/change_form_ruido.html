@@ -1,0 +1,9 @@
+{% extends "admin/change_form.html" %}
+
+{% block form_top %}
+    {% if has_change_permission %}
+        <input type="submit" value="Guardar" class="default" />
+    {% else %}
+        <p>No tienes permiso para editar este objeto.</p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,91 @@
+PASOS PARA CONFIGURAR ARCHIVOS ESTÁTICOS EN PRODUCCIÓN
+=================================================
+
+1. INSTALAR WHITENOISE
+----------------------
+pip install whitenoise
+
+2. MODIFICAR settings.py
+-----------------------
+Agregar o modificar las siguientes configuraciones en settings.py:
+
+# Configuración de archivos estáticos
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Directorios adicionales donde buscar archivos estáticos
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
+# Configuración para servir archivos estáticos en producción
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+
+# Asegurarse que whitenoise está en MIDDLEWARE (agregar después de SecurityMiddleware)
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Agregar esta línea
+    # ... resto de middleware ...
+]
+
+3. CREAR DIRECTORIOS NECESARIOS
+------------------------------
+mkdir static
+mkdir staticfiles
+
+4. RECOLECTAR ARCHIVOS ESTÁTICOS
+-------------------------------
+python manage.py collectstatic --noinput
+
+5. REINICIAR EL SERVIDOR
+-----------------------
+- Si estás usando Apache, reinicia el servicio:
+  sudo service apache2 restart
+
+- Si estás usando Nginx:
+  sudo service nginx restart
+
+6. VERIFICACIÓN
+--------------
+1. Abre el admin de Django en el navegador
+2. Presiona Ctrl+Shift+I para abrir las herramientas de desarrollo
+3. Ve a la pestaña "Network"
+4. Recarga la página
+5. Busca archivos .css y verifica que se están cargando correctamente (código 200)
+
+7. SOLUCIÓN DE PROBLEMAS
+-----------------------
+Si los estilos siguen sin cargarse:
+
+1. Verifica los permisos de las carpetas:
+   sudo chown -R www-data:www-data staticfiles/
+   sudo chmod -R 755 staticfiles/
+
+2. Verifica las rutas en la configuración de Apache/Nginx:
+   - Para Apache, en el archivo de configuración del sitio:
+     Alias /static/ /ruta/completa/a/tu/proyecto/staticfiles/
+     <Directory /ruta/completa/a/tu/proyecto/staticfiles>
+         Require all granted
+     </Directory>
+
+   - Para Nginx, en el archivo de configuración del sitio:
+     location /static/ {
+         alias /ruta/completa/a/tu/proyecto/staticfiles/;
+     }
+
+3. Limpia la caché del navegador:
+   - Presiona Ctrl+Shift+Del
+   - Selecciona "Imágenes y archivos en caché"
+   - Limpia los datos
+
+4. Si nada de lo anterior funciona:
+   - Elimina la carpeta staticfiles
+   - Ejecuta nuevamente collectstatic
+   - Reinicia el servidor web
+
+NOTA IMPORTANTE:
+---------------
+- Asegúrate de que DEBUG = False en settings.py para producción
+- Mantén una copia de seguridad de la configuración anterior
+- Si usas un firewall, verifica que el puerto 80 (HTTP) está abierto
+- Los archivos estáticos deben ser servidos por el servidor web (Apache/Nginx) en producción, no por Django 

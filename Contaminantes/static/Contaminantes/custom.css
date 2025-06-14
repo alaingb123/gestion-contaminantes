@@ -1,0 +1,22 @@
+
+
+.text {
+    white-space: normal;
+    word-wrap: break-word; /* Para que las palabras largas también se dividan si es necesario */
+}
+
+.field-municipio {
+    white-space: nowrap;
+}
+
+.field-estado_foco {
+    white-space: nowrap;
+}
+
+.field-cuenca_hidrograficas {
+    white-space: nowrap;
+}
+
+
+
+
